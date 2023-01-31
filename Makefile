@@ -22,13 +22,19 @@ export  SDK_ROOT
 CORE_LIB_FILE = $(CURDIR)/staticDir/build/core.a
 export CORE_LIB_FILE
 
-SUBDIRS = staticDir 
-SUBDIRS += dynamicDir 
+STATICDIRS = staticDir 
+DYNAMICDIRS = dynamicDir 
+SUBDIRS = staticDir dynamicDir
 
-.PHONY:staticlib clean rmlib
+.PHONY:staticlib dynamiclib clean rmlib
 
 staticlib:
-	for dir in $(SUBDIRS); do \
+	for dir in $(STATICDIRS); do \
+	$(MAKE) -C $$dir ;\
+	done
+
+dynamiclib:
+	for dir in $(DYNAMICDIRS); do \
 	$(MAKE) -C $$dir ;\
 	done
 
