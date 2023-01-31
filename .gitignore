@@ -1,0 +1,11 @@
+
+##
+syscore
+*.d
+*.so
+*.a
+*.o
+
+##directory
+build/
+.vscode/
