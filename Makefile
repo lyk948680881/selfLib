@@ -18,7 +18,7 @@ export  SDK_INC
 export  SDK_LIB
 export  SDK_ROOT
 
-#内核库,rv1126 需要加载入内核的线程池
+#内核库,rv1126 需要内核的内存池接口
 CORE_LIB_FILE = $(CURDIR)/staticDir/build/core.a
 export CORE_LIB_FILE
 
