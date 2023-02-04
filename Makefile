@@ -10,6 +10,8 @@ AR           = $(CROSS)ar cqs
 AS           = $(CROSS)as
 STRIP        = $(CROSS)strip
 
+#TEST
+
 export  CC
 export  AR
 export  AS
