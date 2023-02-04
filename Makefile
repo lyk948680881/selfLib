@@ -26,7 +26,12 @@ STATICDIRS = staticDir
 DYNAMICDIRS = dynamicDir 
 SUBDIRS = staticDir dynamicDir
 
-.PHONY:staticlib dynamiclib clean rmlib
+.PHONY:all staticlib dynamiclib cleanD cleanS rmlib clean
+
+all:
+	for dir in $(SUBDIRS); do \
+	$(MAKE) -C $$dir ;\
+	done
 
 staticlib:
 	for dir in $(STATICDIRS); do \
@@ -38,12 +43,21 @@ dynamiclib:
 	$(MAKE) -C $$dir ;\
 	done
 
+cleanD:	
+	for dir in $(DYNAMICDIRS); do \
+	$(MAKE) clean -C $$dir ;\
+	done
+cleanS:	
+	for dir in $(STATICDIRS); do \
+	$(MAKE) clean -C $$dir ;\
+	done
+rmlib:
+	for dir in $(SUBDIRS); do \
+	$(MAKE) rmlib -C $$dir ;\
+	done
 clean:	
 	for dir in $(SUBDIRS); do \
 	$(MAKE) clean -C $$dir ;\
 	done
 
-rmlib:
-	for dir in $(SUBDIRS); do \
-	$(MAKE) rmlib -C $$dir ;\
-	done
+

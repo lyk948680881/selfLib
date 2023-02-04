@@ -71,41 +71,41 @@ typedef struct
 
 
 //////////////////////////////////////////////////////////////////////////////
-//        å†…éƒ¨æ¨¡å—å®šä¹‰
-//        æ¯ä¸€ä¸ªæ¨¡å—éƒ½å¿…é¡»å…·æœ‰å¦‚ä¸‹å¯¹å¤–æ¥å£ï¼š
+//        ÄÚ²¿Ä£¿é¶¨Òå
+//        Ã¿Ò»¸öÄ£¿é¶¼±ØĞë¾ßÓĞÈçÏÂ¶ÔÍâ½Ó¿Ú£º
 //                  xxxx_init  ;
 //                  xxxx_exit  ;
-//        xxxx = æ¨¡å—åå­— å¦‚ï¼šæ¨¡å—ä¸ºPTZï¼Œåˆ™PTZ_init/PTZ_exit
-//        æ¯ä¸€ä¸ªæ¨¡å—éœ€è¦å‘æ ¸å¿ƒå±‚æ³¨å†Œä¸€ä¸ªæŒ‡å®šæ ¼å¼çš„ç»“æ„ï¼Œç”¨ä»¥åç»­æ¨¡å—ä¹‹é—´é€šä¿¡ã€‚
+//        xxxx = Ä£¿éÃû×Ö Èç£ºÄ£¿éÎªPTZ£¬ÔòPTZ_init/PTZ_exit
+//        Ã¿Ò»¸öÄ£¿éĞèÒªÏòºËĞÄ²ã×¢²áÒ»¸öÖ¸¶¨¸ñÊ½µÄ½á¹¹£¬ÓÃÒÔºóĞøÄ£¿éÖ®¼äÍ¨ĞÅ¡£
 typedef int    ( * MODULE_INIT ) ( void ) ;
 typedef int    ( * MODULE_EXIT ) ( void ) ;
 
 int  core_init( void ) ;
 int  core_exit( void ) ;
-int  core_printf( const char * fmt , ... ) ;    //è°ƒè¯•è¯­å¥
+int  core_printf( const char * fmt , ... ) ;    //µ÷ÊÔÓï¾ä
 
 /////////////////////////////////////////////////////////////
 //
-//    å·¥å…·å‡½æ•°
+//    ¹¤¾ßº¯Êı
 //
-//    1. å®šæ—¶å™¨å‡½æ•°
-//    2. åŠ¨æ€åº“åŠ è½½å‡½æ•°
-//    3. çº¿ç¨‹å‡½æ•°
-//    4. VxWorksæ¨¡æ‹Ÿå‡½æ•°
-//    5. å†…å­˜POOLç®¡ç†å‡½æ•°
-//    6. ç½‘ç»œé“¾æ¥å‡½æ•°
+//    1. ¶¨Ê±Æ÷º¯Êı
+//    2. ¶¯Ì¬¿â¼ÓÔØº¯Êı
+//    3. Ïß³Ìº¯Êı
+//    4. VxWorksÄ£Äâº¯Êı
+//    5. ÄÚ´æPOOL¹ÜÀíº¯Êı
+//    6. ÍøÂçÁ´½Óº¯Êı
 /////////////////////////////////////////////////////////////
 
-///1. å®šæ—¶å™¨
+///1. ¶¨Ê±Æ÷
 #define  TIMER_NORMAL          0
 #define  TIMER_PERIOD          1
 
 typedef void ( * TIMER_CALLBACK ) ( int message , void * pdata ) ;
 int  core_timer_init ( void ) ;
-//å¯åŠ¨å¸¦å›è°ƒå‡½æ•°çš„å®šæ—¶å™¨ 1 tick = 10ms
+//Æô¶¯´ø»Øµ÷º¯ÊıµÄ¶¨Ê±Æ÷ 1 tick = 10ms
 int  core_timer_start  ( int message  , int ticks , int type , void *pdata , TIMER_CALLBACK func ) ;
 
-//å¯åŠ¨å‘æŒ‡å®šAPPæ¨¡å—å‘é€æ¶ˆæ¯çš„å®šæ—¶å™¨
+//Æô¶¯ÏòÖ¸¶¨APPÄ£¿é·¢ËÍÏûÏ¢µÄ¶¨Ê±Æ÷
 int  core_timer_message( int receiver , int message , int ticks , int type ) ;
 int  core_timer_get_ticks( int timer) ;
 void core_timer_stop ( int timer ) ;
@@ -114,14 +114,14 @@ void core_timer_pause( int timer , int pause ) ;
 void core_timer_set  ( int timer , int ticks ) ;
 
 
-//2. åŠ¨æ€åº“åŠ è½½å‡½æ•°
+//2. ¶¯Ì¬¿â¼ÓÔØº¯Êı
 int  core_load_module   ( char * name ) ;
 int  core_unload_module ( char * name ) ;
 int  core_list_module   ( char * buf  ) ;
 int  core_list_thread  ( void  );
 
-//3. çº¿ç¨‹å‡½æ•°
-//åˆ›å»ºçº¿ç¨‹ï¼Œè„±ç¦»ä¸»å‡½æ•°å…³è”
+//3. Ïß³Ìº¯Êı
+//´´½¨Ïß³Ì£¬ÍÑÀëÖ÷º¯Êı¹ØÁª
 typedef  void *( * CORE_THREAD_FUNC )( void* )  ;
 int  core_create_thread ( char * name , CORE_THREAD_FUNC func  , void * para ) ;
 int  core_wait_thread   ( int id  ) ;
@@ -129,7 +129,7 @@ int  core_set_thread_cpu( int cpu ) ;
 
 
 
-//4. VxWorksæ¨¡æ‹Ÿå‡½æ•°
+//4. VxWorksÄ£Äâº¯Êı
 ///////////////////////////////////////////////////////////////////////////////
 #define  NO_WAIT             0
 #define  WAIT_FOREVER       -1
@@ -171,21 +171,21 @@ int    semTake    ( SEM_ID semId,  int    timeOut ) ;
 int    semDelete  ( SEM_ID semId  ) ;
 
 
-//5. å†…å­˜POOLç®¡ç†å‡½æ•°
-//timeout=-1ï¼Œé˜»å¡æ¨¡å¼ï¼›å•ä½ï¼šæ¯«ç±³
+//5. ÄÚ´æPOOL¹ÜÀíº¯Êı
+//timeout=-1£¬×èÈûÄ£Ê½£»µ¥Î»£ººÁÃ×
 typedef  void *    MEM_POOL_ID ;
 
-//åˆ›å»ºä¸€ä¸ªå¤§å°ä¸ºlengthå†…å­˜æ± ï¼Œå¦‚æœbufä¸ºç©ºåˆ™è‡ªåŠ¨åˆ†é…ä¸€å—å†…å­˜
+//´´½¨Ò»¸ö´óĞ¡ÎªlengthÄÚ´æ³Ø£¬Èç¹ûbufÎª¿ÕÔò×Ô¶¯·ÖÅäÒ»¿éÄÚ´æ
 int          core_pool_init   ( void ) ;
 MEM_POOL_ID  core_pool_create ( int length , char * buf )     ; 
-void         core_pool_destroy( MEM_POOL_ID id ) ; //é”€æ¯ä¸€ä¸ªå†…å­˜æ± 
+void         core_pool_destroy( MEM_POOL_ID id ) ; //Ïú»ÙÒ»¸öÄÚ´æ³Ø
 void  *      core_pool_alloc  ( MEM_POOL_ID pool , int length , int timeout ) ; 
-void         core_pool_free   ( MEM_POOL_ID pool , void *mem  ) ; //é‡Šæ”¾å†…å­˜
+void         core_pool_free   ( MEM_POOL_ID pool , void *mem  ) ; //ÊÍ·ÅÄÚ´æ
 int          core_pool_print  ( MEM_POOL_ID pool , char *buf  ) ; //dump pool info
 
 
 
-//6. ç½‘ç»œé“¾æ¥å‡½æ•°
+//6. ÍøÂçÁ´½Óº¯Êı
 int  recv_n_char( int socket , char * buf , int len  ) ;
 int  recv_nn_char( int s , char * buf , int len , int sec) ; //timeout
 int  recvfrom_with_timeout( int s , char * buf , int len , int sec ) ;
@@ -198,3 +198,6 @@ int  connect_with_timeout( int s , U32 ip , int port , int sec ) ;
 #endif
 
 #endif
+
+
+
